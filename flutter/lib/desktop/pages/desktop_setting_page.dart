@@ -2555,17 +2555,20 @@ class _AboutState extends State<_About> {
               SelectionArea(
                   child: Text('${translate('ID')}: $myId')
                       .marginSymmetric(vertical: 4.0)),
+              if (!bind.isCustomClient())
+                InkWell(
+                    onTap: () {
+                      launchUrlString('https://rustdesk.com/privacy.html');
+                    },
+                    child: Text(
+                      translate('Privacy Statement'),
+                      style: linkStyle,
+                    ).marginSymmetric(vertical: 4.0)),
               InkWell(
                   onTap: () {
-                    launchUrlString('https://rustdesk.com/privacy.html');
-                  },
-                  child: Text(
-                    translate('Privacy Statement'),
-                    style: linkStyle,
-                  ).marginSymmetric(vertical: 4.0)),
-              InkWell(
-                  onTap: () {
-                    launchUrlString('https://rustdesk.com');
+                    launchUrlString(bind.isCustomClient()
+                        ? 'https://rd.ceeget.net'
+                        : 'https://rustdesk.com');
                   },
                   child: Text(
                     translate('Website'),
