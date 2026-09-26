@@ -78,6 +78,15 @@ lazy_static::lazy_static! {
         ("allow-remote-config-modification".to_owned(), "N".to_owned()),
         ("direct-server".to_owned(), "N".to_owned()),
         ("allow-auto-update".to_owned(), "N".to_owned()),
+        ("custom-rendezvous-server".to_owned(), "rd.ceecorp.net".to_owned()),
+        ("relay-server".to_owned(), "rd.ceecorp.net:21117".to_owned()),
+        ("key".to_owned(), "8skHuC2jyME1qqRXSx7rL9xtulNxNQRJWzlPSlvntrQ=".to_owned()),
+        ("enable-lan-discovery".to_owned(), "N".to_owned()),
+        ("show-remote-cursor".to_owned(), "Y".to_owned()),
+        ("enable-udp-punch".to_owned(), "N".to_owned()),
+        ("keep-awake-during-incoming-sessions".to_owned(), "N".to_owned()),
+        ("keep-awake-during-outgoing-sessions".to_owned(), "N".to_owned()),
+        ("use-texture-render".to_owned(), "Y".to_owned()),
     ]));
     pub static ref DEFAULT_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
@@ -85,7 +94,9 @@ lazy_static::lazy_static! {
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([
         ("enable-check-update".to_owned(), "N".to_owned()),
     ]));
-    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([
+        ("password".to_owned(), "YPbHtZ63qnNcUuzP44Ma".to_owned()),
+    ]));
     pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([
         ("hide-server-settings".to_owned(), "Y".to_owned()),
         ("hide-powered-by-me".to_owned(), "Y".to_owned()),
@@ -3687,3 +3698,4 @@ mod tests {
         assert_ne!(non_service_root, non_service_user);
     }
 }
+
